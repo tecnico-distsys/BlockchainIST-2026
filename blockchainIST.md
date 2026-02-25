@@ -70,13 +70,14 @@ Deve falhar se:
     - o saldo da origem for insuficiente;
     - a quantia não for positiva.
 
-- **leBlockchain** - Consulta o estado da _blockchain_.
+- **leBlockchain** - Consulta a lista ordenada de transações que já foram entregues num dado nó.
 
 
 Todas as operações, exceto **leSaldo** e **leBlockchain**, modificam o estado global e devem ser registadas na _blockchain_. A estas operações, designamos *transações*.
 
 É esperado que o sistema replicado assegure linearizabilidade como critério de coerência. 
-A única exceção é a operação  **leBlockchain**, que, para efeitos de depuração, simplesmente descarrega o estado atual de um nó sem garantia de coerência com o resto do sistema.
+
+> Nota: nos .proto e código inicial fornecido, usamos variantes inglesas as operações/parâmetros citadas acima (CreateWallet, etc.)
 
 ## 3. Arquitetura Geral
 
@@ -273,7 +274,7 @@ Cada cliente recebe comandos a partir do terminal. Deve mostrar o símbolo *>* s
 
 Para todos os comandos, caso não ocorra nenhum erro, o cliente devem imprimir "OK" seguido da mensagem de resposta, tal como gerada pelo método toString() da classe gerada pelo compilador `protoc`, conforme ilustrado nos exemplos abaixo. 
 
-No caso em que um comando origina algum erro do lado do servidor, esse erro deve ser transmitido ao cliente usando os mecanismos do gRPC para tratamento de erros (no caso do Java, encapsulados em exceções). Nessas situações, quando o cliente recebe uma exceção após uma invocação remota, este deve simplesmente imprimir uma mensagem que descreva o erro correspondente.
+No caso em que um comando origina algum erro do lado do servidor, esse erro deve ser transmitido ao cliente usando os mecanismos do gRPC para tratamento de erros (no caso do Java, encapsulados em exceções). Nessas situações, quando o cliente recebe uma exceção após uma invocação remota, este deve simplesmente imprimir (no *stderr*) uma mensagem que descreva o erro correspondente.
 
 Os comandos deverão ser numerados sequencialmente em cada cliente e a impressão do resultado (seja sucesso ou erro) deve ser precedida pelo número do comando.
 
@@ -288,7 +289,7 @@ Os comandos que o cliente aceita pela linha de comandos obedecem às seguintes r
   - `B`, que invoca **leBlockchain**.
 - Além dos argumentos referidos acima, há dois argumentos adicionais: 
   - Em todos os comandos: Um inteiro que indexa o nó ao qual o pedido deve ser enviado (na ordem dos nós conhecido pelo cliente, começando em 0));
-  - Em todos exceto `S` e `B`: um inteiro que especifica o atraso em segundos que o nó contactado deve esperar antes de executar o pedido.  
+  - Em todos exceto `B`: um inteiro que especifica o atraso em segundos que o nó contactado deve esperar antes de executar o pedido.  
 - Os nós só deverão dar aos clientes a resposta dos comando `C`, `E` e `T` depois da transação respetiva ter sido entregue atomicamente num bloco da _blockchain_.
 - **[Só a partir da entrega B.1]** Deverão ser igualmente implementadas variantes não-bloqueantes destes comandos, usando as minúsculas correspondentes (`c`, `e` e `t`). Estes devem devolver imediatamente à consola (sem imprimir resultado), permitindo assim que novos comandos sejam processados. O resultado dos comandos não-bloqueantes só devem ser impressos posteriormente, assim que o cliente receber a resposta do nó.
 
