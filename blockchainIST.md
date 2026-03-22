@@ -227,15 +227,15 @@ Objetivo: otimizar latência para transferências e introduzir autenticação cr
 - A associação de cada utilizador a uma dada organização passa a ser conhecida por cada nó, devendo um nó correto passar a verificar que os pedidos que recebe dos clientes são feitos por um utilizador da organização que esse nó representa. 
 - Como não se pretende implementar um *membership service provider* neste projeto, o conjunto de utilizadores e organizações é estático e pré-conhecido por cada nó, sendo o seguinte:
 	- Utilizador: BC, organização: OrgA
-	-Utilizador: Alice, organização: OrgA
-	-Utilizador: Bob, organização: OrgA
-	-Utilizador: Charlie, organização: OrgA
-	-Utilizador: David, organização: OrgB
-	-Utilizador: Emma, organização: OrgB
-	-Utilizador: Fred, organização: OrgB
-	-Utilizador: Ginger, organização: OrgC
-	-Utilizador: Henry, organização: OrgC
-	-Utilizador: Iris, organização: OrgC
+	- Utilizador: Alice, organização: OrgA
+	- Utilizador: Bob, organização: OrgA
+	- Utilizador: Charlie, organização: OrgA
+	- Utilizador: David, organização: OrgB
+	- Utilizador: Emma, organização: OrgB
+	- Utilizador: Fred, organização: OrgB
+	- Utilizador: Ginger, organização: OrgC
+	- Utilizador: Henry, organização: OrgC
+	- Utilizador: Iris, organização: OrgC
 
 
 #### Entrega C.1 — Ordem Causal para Transferências
