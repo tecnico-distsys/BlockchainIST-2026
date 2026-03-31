@@ -24,7 +24,7 @@ Ao programa do Sequenciador:
 
 
 
-3) Na vossa solução para o requisito da C.1, em quais condições uma transferência **NÃO** é executada pelo nó que recebeu o pedido respetivo? (máx. 100 palavras)
+3) Na vossa solução para o requisito da C.1, em quais condições uma transferência **NÃO** é executada pelo nó (que recebeu o pedido respetivo) antes da transação ser enviada ao sequenciador? (máx. 100 palavras)
 
 
 
